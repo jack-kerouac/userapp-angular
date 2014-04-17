@@ -375,12 +375,12 @@ var userappModule = angular.module('UserApp', []);
             logout: function(callback) {
                 var that = this;
 
-                UserApp.User.logout(function(error) {});
+                UserApp.User.logout(function(error) {
+                    that.reset();
+                    $rootScope.$broadcast('user.logout');
 
-                that.reset();
-                $rootScope.$broadcast('user.logout');
-
-                callback && callback(error);
+                    callback && callback(error);
+                });
             },
 
             // Send reset password email
